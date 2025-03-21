@@ -18,8 +18,8 @@ public class DialogWindow {
         modalTitle.shouldHave(text(title));
     }
 
-    public void checkFieldContent(String field, String value) {
-        modalContent.$(byText(field)).parent().setValue(value);
+    public void checkFieldContent(String value) {
+        modalContent.shouldHave(text(value));
     }
 
     public void shouldAppear() {

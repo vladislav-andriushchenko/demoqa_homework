@@ -16,7 +16,7 @@ public class PracticeFormPageObjectTests extends TestBase {
     String month = "May";
     String day = "15";
     String year = "1995";
-    String subject = "Music";
+    String subject = "Maths";
     String address = "Some address";
     String city = "Karnal";
     String state = "Haryana";
@@ -45,16 +45,16 @@ public class PracticeFormPageObjectTests extends TestBase {
 
         practiceFormPage
                 .checkModalTitle("Thanks for submitting the form")
-                .checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Student Email", email)
-                .checkResult("Gender", genderRadioValue)
-                .checkResult("Mobile", phone)
-                .checkResult("Date of Birth", day + " " + month + ", " + year)
-                .checkResult("Subject", subject)
-                .checkResult("Hobbies", hobby)
-                .checkResult("Picture", imageName)
-                .checkResult("Address", address)
-                .checkResult("State and City", state + " " + city);
+                .checkResult(firstName + " " + lastName)
+                .checkResult(email)
+                .checkResult( genderRadioValue)
+                .checkResult( phone)
+                .checkResult( day + " " + month + "," + year)
+                .checkResult( subject)
+                .checkResult( hobby)
+                .checkResult( imageName)
+                .checkResult( address)
+                .checkResult( state + " " + city);
     }
 
     @Test
@@ -64,15 +64,16 @@ public class PracticeFormPageObjectTests extends TestBase {
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setPhone(phone)
-                .selectGender(genderRadioValue);
+                .selectGender(genderRadioValue)
+                .submitForm();
 
-        dialogWindow.shouldNotAppear();
+        dialogWindow.shouldAppear();
 
         practiceFormPage
                 .checkModalTitle("Thanks for submitting the form")
-                .checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Gender", genderRadioValue)
-                .checkResult("Mobile", phone);
+                .checkResult(firstName + " " + lastName)
+                .checkResult( genderRadioValue)
+                .checkResult( phone);
     }
 
     @Test

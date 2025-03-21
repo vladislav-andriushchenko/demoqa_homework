@@ -70,7 +70,7 @@ public class PracticeFormPage {
     }
 
     public PracticeFormPage selectSubject(String value) {
-        subjectInput.$(byText(value)).pressEnter();
+        subjectInput.setValue(value).pressEnter();
         return this;
     }
 
@@ -90,12 +90,14 @@ public class PracticeFormPage {
     }
 
     public PracticeFormPage setState(String value) {
-        stateInput.setValue(value);
+        stateInput.click();
+        $(byText(value)).click();
         return this;
     }
 
     public PracticeFormPage setCity(String value) {
-        cityInput.setValue(value);
+        cityInput.click();
+        $(byText(value)).click();
         return this;
     }
 
@@ -103,8 +105,8 @@ public class PracticeFormPage {
         submitButton.click();
     }
 
-    public PracticeFormPage checkResult(String field, String value) {
-        dialogWindow.checkFieldContent(field, value);
+    public PracticeFormPage checkResult(String value) {
+        dialogWindow.checkFieldContent(value);
         return this;
     }
 
