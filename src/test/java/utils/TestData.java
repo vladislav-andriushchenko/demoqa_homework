@@ -87,4 +87,8 @@ public class TestData {
         var index = faker.random().nextInt(requireNonNull(fileNames).length);
         return fileNames[index];
     }
+
+    public static void main(String[] args) {
+        System.out.println(getRandomFile());
+    }
 }

@@ -80,7 +80,7 @@ public class PracticeFormPage {
     }
 
     public PracticeFormPage uploadPicture(String filePath) {
-        uploadPictureSelector.uploadFromClasspath(filePath);
+        uploadPictureSelector.uploadFromClasspath("images/" + filePath);
         return this;
     }
 
