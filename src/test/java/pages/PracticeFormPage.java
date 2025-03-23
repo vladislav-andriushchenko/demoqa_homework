@@ -12,7 +12,7 @@ public class PracticeFormPage {
     CalendarComponent calendarComponent = new CalendarComponent();
     DialogWindow dialogWindow = new DialogWindow();
 
-    private static SelenideElement
+    private static final SelenideElement
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
@@ -32,6 +32,7 @@ public class PracticeFormPage {
         removeBanner();
         return this;
     }
+
     public PracticeFormPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");

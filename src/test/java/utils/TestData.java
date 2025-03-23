@@ -11,16 +11,16 @@ import static java.util.Objects.requireNonNull;
 public class TestData {
 
     static Faker faker = new Faker();
-    static final String dir = "src/test/resources/images";
+    private static final String dir = "src/test/resources/images";
 
-    static Map<String, List<String>> stateCityMap = new HashMap<>() {{
+    private static final Map<String, List<String>> stateCityMap = new HashMap<>() {{
         put("NCR", Arrays.asList("Delhi", "Gurgaon", "Noida"));
         put("Uttar Pradesh", Arrays.asList("Agra", "Lucknow", "Merrut"));
         put("Haryana", Arrays.asList("Karnal", "Panipat"));
         put("Rajasthan", Arrays.asList("Jaipur", "Jaiselmer"));
     }};
 
-    static ArrayList<String>
+    private static final ArrayList<String>
             gender = new ArrayList<>(Arrays.asList("Male", "Female", "Other")),
             hobbies = new ArrayList<>(Arrays.asList("Sports", "Reading", "Music")),
             subjects = new ArrayList<>(Arrays.asList("Maths", "Arts", "History", "Biology", "Economics"));
@@ -33,6 +33,19 @@ public class TestData {
     public static String getRandomCity(String state) {
         List<String> cities = stateCityMap.get(state);
         return cities.get(faker.random().nextInt(cities.size()));
+    }
+
+    public static String getRandomMonth() {
+        return faker.options().option(
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+        );
+    }
+
+    public static String getRandomFile() {
+        var fileNames = new File(dir).list();
+        var index = faker.random().nextInt(requireNonNull(fileNames).length);
+        return fileNames[index];
     }
 
     public static String getRandomFirstName() {
@@ -55,13 +68,6 @@ public class TestData {
         return faker.address().fullAddress();
     }
 
-    public static String getRandomMonth() {
-        return faker.options().option(
-                "January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-        );
-    }
-
     public static String getRandomDay() {
         return String.format("%03d", faker.number().numberBetween(1, 31));
     }
@@ -80,15 +86,5 @@ public class TestData {
 
     public static String getRandomSubject() {
         return subjects.get(faker.random().nextInt(subjects.size()));
-    }
-
-    public static String getRandomFile() {
-        var fileNames = new File(dir).list();
-        var index = faker.random().nextInt(requireNonNull(fileNames).length);
-        return fileNames[index];
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getRandomFile());
     }
 }
