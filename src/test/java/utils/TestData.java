@@ -69,7 +69,7 @@ public class TestData {
     }
 
     public static String getRandomDay() {
-        return String.format("%03d", faker.number().numberBetween(1, 31));
+        return String.format("%02d", faker.number().numberBetween(1, 31));
     }
 
     public static String getRandomYear() {

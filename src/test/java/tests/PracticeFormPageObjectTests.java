@@ -53,7 +53,7 @@ public class PracticeFormPageObjectTests extends TestBase {
                 .checkResult(email)
                 .checkResult(genderRadioValue)
                 .checkResult(phone)
-                .checkResult(String.format("%02d", Integer.parseInt(day)) + " " + month + "," + year)
+                .checkResult(day + " " + month + "," + year)
                 .checkResult(subject)
                 .checkResult(hobby)
                 .checkResult(imageName)
