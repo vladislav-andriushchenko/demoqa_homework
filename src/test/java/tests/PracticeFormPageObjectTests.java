@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.PracticeFormPage;
 import pages.components.DialogWindow;
@@ -11,26 +12,29 @@ public class PracticeFormPageObjectTests extends TestBase {
     PracticeFormPage practiceFormPage = new PracticeFormPage();
     DialogWindow dialogWindow = new DialogWindow();
 
-    String firstName = getRandomFirstName(),
-            lastName = getRandomLastName(),
-            email = getRandomEmail(),
-            phone = getRandomPhoneNumber(),
-            genderRadioValue = getRandomGender(),
-            address = getRandomAddress(),
-            imageName = getRandomFile(),
-            hobby = getRandomHobby(),
-            subject = getRandomSubject(),
-            state = getRandomState(),
-            city = getRandomCity(state),
-            month = getRandomMonth(),
-            year = getRandomYear(),
-            day = getRandomDay();
-
+    String firstName, lastName , email, phone , genderRadioValue, address, imageName, hobby,
+            subject, state, city, month, year, day;
 
     @Test
     void successfulMaxFieldsTest() {
+        firstName = getRandomFirstName();
+        lastName = getRandomLastName();
+        email = getRandomEmail();
+        phone = getRandomPhoneNumber();
+        genderRadioValue = getRandomGender();
+        address = getRandomAddress();
+        imageName = getRandomFile();
+        hobby = getRandomHobby();
+        subject = getRandomSubject();
+        state = getRandomState();
+        city = getRandomCity(state);
+        month = getRandomMonth();
+        year = getRandomYear();
+        day = getRandomDay();
+
         practiceFormPage
                 .openPage()
+                .removeBanner()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
@@ -63,8 +67,14 @@ public class PracticeFormPageObjectTests extends TestBase {
 
     @Test
     void successfulMinFieldsTest() {
+        firstName = getRandomFirstName();
+        lastName = getRandomLastName();
+        phone = getRandomPhoneNumber();
+        genderRadioValue = getRandomGender();
+
         practiceFormPage
                 .openPage()
+                .removeBanner()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setPhone(phone)
@@ -84,6 +94,7 @@ public class PracticeFormPageObjectTests extends TestBase {
     void withoutRequiredFieldsTest() {
         practiceFormPage
                 .openPage()
+                .removeBanner()
                 .submitForm();
 
         dialogWindow.shouldNotAppear();

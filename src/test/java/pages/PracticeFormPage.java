@@ -29,7 +29,6 @@ public class PracticeFormPage {
 
     public PracticeFormPage openPage() {
         open("/automation-practice-form");
-        removeBanner();
         return this;
     }
 
