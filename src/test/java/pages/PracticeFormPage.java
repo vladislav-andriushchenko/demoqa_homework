@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.DialogWindow;
 
+import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -113,5 +114,9 @@ public class PracticeFormPage {
     public PracticeFormPage checkModalTitle(String title) {
         dialogWindow.checkModalTitle(title);
         return this;
+    }
+
+    public void checkRequiredPhoneField() {
+        phoneInput.shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
 }
