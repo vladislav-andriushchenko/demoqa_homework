@@ -6,6 +6,7 @@ import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
@@ -23,6 +24,15 @@ public class TestBase {
 
         if (isRemote) {
             Configuration.remote = System.getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments(
+                    "--disable-dev-shm-usage",
+                    "--no-sandbox",
+                    "--remote-allow-origins=*",
+                    "--disable-gpu",
+                    "--window-size=1920,1080"
+            );
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.<String, Object>of(
