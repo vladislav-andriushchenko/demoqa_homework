@@ -36,6 +36,7 @@ public class PracticeFormPage {
     public PracticeFormPage removeBanner() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        executeJavaScript("document.querySelectorAll('iframe').forEach(el => el.style.display = 'none');");
         return this;
     }
 
@@ -92,7 +93,7 @@ public class PracticeFormPage {
 
     public PracticeFormPage setState(String value) {
         stateInput.click();
-        $(byText(value)).click();
+        $(byText(value)).scrollIntoView(true).click();
         return this;
     }
 
@@ -103,7 +104,10 @@ public class PracticeFormPage {
     }
 
     public void submitForm() {
-        submitButton.click();
+        executeJavaScript(
+                "arguments[0].scrollIntoView({block: 'center', behavior: 'instant'});" +
+                        "arguments[0].click();",
+                submitButton);
     }
 
     public PracticeFormPage checkResult(String value) {
