@@ -92,7 +92,7 @@ public class PracticeFormPage {
     }
 
     public PracticeFormPage setState(String value) {
-        stateInput.click();
+        stateInput.scrollIntoView(true).click();
         $(byText(value)).scrollIntoView(true).click();
         return this;
     }
